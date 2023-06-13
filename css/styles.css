@@ -27,7 +27,6 @@ html {
 }
 img {
   display: block;
-  max-width: 100%;
 }
 
 body {
@@ -101,6 +100,7 @@ header .container nav .logo {
   text-decoration: none;
   font-style: normal;
 }
+
 header .container nav .nav-menu {
   display: flex;
   list-style: none;
@@ -111,6 +111,9 @@ header .container nav .nav-menu {
   display: flex;
   align-items: center;
 }
+header .container nav .nav-menu .page:focus {
+  color: var(--color-web);
+}
 
 header .container nav .nav-menu .page {
   font-weight: 500;
@@ -120,6 +123,10 @@ header .container nav .nav-menu .page {
   text-decoration: none;
   text-transform: capitalize;
   position: relative;
+}
+a:hover {
+  color: var(--color-web);
+  fill: var(--color-web);
 }
 .current {
   color: var(--color-web);
@@ -164,6 +171,7 @@ header .container .page-header-contain li .link .icon.smartphone {
   width: 10px;
   height: 17px;
 }
+
 header .container .page-header-contain li .link:hover,
 header .container .page-header-contain li .link:focus,
 header .container .page-header-contain li .link:hover .icon {
@@ -358,23 +366,33 @@ header .container .page-header-contain li .link:hover .icon {
   line-height: 42px;
   letter-spacing: 0.03em;
 }
-.team-section .container .team-cards {
+.team-cards {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 20px;
   align-items: flex-end;
   padding-bottom: 94px;
+  flex-wrap: wrap;
 }
-.team-section .container .team-cards li {
+.team-cards li {
   background-color: var(--color-primario-fondo-pantalla);
   text-align: center;
   list-style: none;
   border-radius: 0px 0px 4px 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
+  flex-basis: calc((100% - 60px) / 4);
 }
 
-.team-section .container .team-cards li h3 {
+.team-cards li > img {
+  min-width: 100%;
+  object-fit: cover;
+}
+
+.content-redes li > a:focus {
+  background-color: var(--color-web);
+}
+
+.team-cards .team-cards li h3 {
   margin: 20px 0 10px 0;
   font-family: 'Roboto';
   font-style: normal;
@@ -478,6 +496,12 @@ footer .container .footer-links .contact {
 footer .container .footer-links .contact:hover {
   color: var(--color-web);
 }
+
+footer .container .footer-links .contact:focus {
+  text-decoration: underline;
+  color: var(--color-web);
+}
+
 footer .container .footer-links li {
   font-family: 'Roboto';
   font-style: normal;
@@ -505,6 +529,14 @@ footer .container aside ul {
   list-style: none;
   gap: 10px;
 }
+footer .container aside ul li a {
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
 
 footer .container aside ul li {
   display: flex;
@@ -518,14 +550,18 @@ footer .container aside ul li {
   width: 44px;
 }
 
+.email-focus a:focus {
+  text-decoration: underline;
+}
+
 footer .container aside ul li .icon {
   fill: var(--color-primario-fondo-pantalla);
 }
-footer .container aside ul li:hover {
+footer .container aside ul li > a:hover {
   background-color: var(--color-web);
 }
-footer .container aside ul li:hover a .icon {
-  fill: var(--color-primario-fondo-pantalla);
+footer .container aside ul li > a:focus {
+  background-color: var(--color-web);
 }
 /* footer */
 /*----------- Regular Costumers -----------*/
@@ -541,13 +577,15 @@ footer .container aside ul li:hover a .icon {
   padding-top: 60px;
   text-align: center;
 }
+
 .customers .container ul {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px;
   list-style: none;
   padding-bottom: 151px;
   padding-top: 45px;
+  flex-wrap: wrap;
 }
 .customers .container ul li {
   display: flex;
@@ -558,17 +596,29 @@ footer .container aside ul li:hover a .icon {
   border-radius: 5px;
   cursor: pointer;
   height: 92px;
-  width: 170px;
+  flex-basis: calc((100% - 100px) / 6);
 }
-.customers .container ul li:hover {
+
+.customers .container ul li a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.customers .container ul li a:hover,
+.customers .container ul li a:focus {
   border: solid 1px var(--color-web);
+  background-color: var(--color-web);
 }
 .customers .container ul li .icon-customer {
   fill: var(--iconos);
 }
 .customers .container ul li:hover .icon-customer {
-  fill: var(--color-web);
+  fill: var(--color-primario-fondo-pantalla);
 }
+
 /*----------- Regular Costumers -----------*/
 /* ----------- feature section ----------- */
 .feature {
@@ -578,10 +628,14 @@ footer .container aside ul li:hover a .icon {
   flex-direction: column;
 }
 .feature .container .feature-list {
-  flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  gap: 30px;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.feature-list li {
+  flex-basis: calc((100% - 90px) / 4);
 }
 .feature .container .feature-list li div {
   display: flex;
@@ -666,29 +720,55 @@ section .backdrop .modal button:hover .icon-ose {
 }
 /* modal */
 /* transform */
+.content-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.content-list li {
+  flex-basis: calc((100% - 80px) / 3);
+}
+
+.content-list li > a {
+  transition: 0.25s ease;
+}
+
+.content-list li > a:hover {
+  transform: scale(1.1);
+}
+
+.content-list li > a:focus .card-animation {
+  transform: translateY(0%);
+}
 .container-card {
-  width: 370px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   border: 1px solid #eeeeee;
-  flex-basis: calc((100% - 60px) / 3);
 }
+
+.card-image {
+  img {
+    max-width: 100%;
+  }
+}
+
 .container-card:hover {
   cursor: pointer;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+
 .section-main {
   padding-top: 106px;
   padding-bottom: 106px;
 }
+
 .flex-list {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  margin-top: 3rem;
 }
+
 .card-body {
   margin-bottom: 5px;
   padding: 20px 24px;
